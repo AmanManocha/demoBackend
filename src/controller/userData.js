@@ -1,30 +1,10 @@
-// const User = require('../model/userModel.js');
-
-// const getUserData = async (req, res) => {
-//     try {
-
-//         const accessToken = req.header('accessToken');
-
-//         // Check if the access token is provided
-//         if (!accessToken) {
-//           return res.status(401).json({ error: 'Access denied. No token provided.' });
-//         }
-//         const users = await User.find();
-//         res.json(users);
-//       } catch (error) {
-//         console.error('Error fetching users:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-//   };
-
-//   module.exports = {getUserData};
-
 const User = require('../model/userModel.js');
 
 const getUserData = async (req, res) => {
   try {
     const accessToken = req.header('accessToken');
-
+const {email} =req.user
+console.log("aaaaaaaaaaaaaaaaaaaa",req.user)
     // Check if the access token is provided
     if (!accessToken) {
       return res.status(401).json({ error: 'Access denied. No token provided.' });
@@ -47,5 +27,6 @@ const getUserData = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 module.exports = { getUserData };

@@ -7,7 +7,7 @@ const generateToken = require('../utils/generateToken.js');
 const signup = async (req, res) => {
     try {
 
-      const { email,password,firstName,lastName, role } = req.body;
+      const { email,password,role } = req.body;
 
       console.log('email', email)
       console.log('password', password)
@@ -22,7 +22,7 @@ const signup = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
   
       // Create a new user
-      const newUser = new User({ email, password: hashedPassword, role, firstName, lastName });
+      const newUser = new User({ email, password: hashedPassword, role });
       await newUser.save();
   
       res.status(201).json({ message: 'Signup successful.' });
@@ -53,7 +53,7 @@ const signup = async (req, res) => {
       }
       const token = generateToken(user);
   
-      res.status(200).json({ message: 'Login successful.',token, role});
+      res.status(200).json({ message: 'Login successful.',token, role, userId: user._id});
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error.' });
