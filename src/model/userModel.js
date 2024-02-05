@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema({
   city: String,
   pinCode: String,
   project: String,
-  dateRange: {type: Object,Date},
-  location: String,
+  projectDuration: {type: Object},
+  location: {type: Object},
   profession: String,
   experience: String,
   profilePhoto: String, // Store file path or URL
